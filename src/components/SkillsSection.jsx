@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import tailwindLogo from "../assets/tailwind-css3232.logowik.com.webp";
-import sparkLogo from "../assets/logo apache spark.png";
+import sparkLogo from "../assets/Logo Apache Spark.png";
 
 const skills = [
   // Frontend
