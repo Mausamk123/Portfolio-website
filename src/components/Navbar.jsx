@@ -8,6 +8,7 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
+  
 ];
 
 export const Navbar = () => {
@@ -16,7 +17,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -25,32 +26,64 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
+        "w-full z-40 transition-all duration-300",
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
       )}
     >
       <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
-        >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground"> PedroTech </span>{" "}
-            Portfolio
-          </span>
-        </a>
-
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
-          {navItems.map((item, key) => (
+        {/* left group: icons + nav items */}
+        <div className="flex items-center space-x-6">
+          {/* social / contact icons */}
+          <div className="flex items-center space-x-3">
             <a
-              key={key}
-              href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              href="https://www.linkedin.com/in/mausam-kamdar-054659248/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open LinkedIn profile"
+              className="text-foreground/80 hover:text-primary transition-colors duration-200"
             >
-              {item.name}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-5 h-5"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 20h-3v-11h3v11zm-1.5-12.3c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 12.3h-3v-5.5c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.93v5.59h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z" />
+              </svg>
             </a>
-          ))}
+
+            <a
+              href="mailto:mkkakis5e@gmail.com"
+              aria-label="Send email"
+              className="text-foreground/80 hover:text-primary transition-colors duration-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-5 h-5"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* desktop nav (text links) - unchanged */}
+          <div className="hidden md:flex space-x-8 items-center">
+            {navItems.map((item, key) => (
+              <a
+                key={key}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* mobile nav */}
